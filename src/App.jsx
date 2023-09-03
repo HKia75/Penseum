@@ -1,11 +1,15 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Counter } from "./features/counter/Counter";
+import StartingPage from "./pages/dashboard/startingPage";
+import Auth from "./pages/Auth";
 
 function App() {
   return (
     <>
-      <div className="flex m-4 text-left  justify-center"></div>
-      <Counter />
+       <Routes>
+        <Route path="/" element={<StartingPage />} />
+        <Route path="/auth" element={<Auth />} />        
+      </Routes>
     </>
   );
 }
