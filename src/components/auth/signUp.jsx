@@ -5,7 +5,7 @@ import { AuthInput } from "@/shared/tailwindClasses/tailwindClass";
 
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "@/api/services/cookies.storage";
-import { postLogin } from "@/api/services/auth";
+import { postSignUp } from "../../api/services/auth";
 import { useState } from "react";
 
 const ValidationSchema = Yup.object().shape({
@@ -14,7 +14,7 @@ const ValidationSchema = Yup.object().shape({
   full_name: Yup.string().required("Full Name Required"),
 });
 
-function Login() {
+function SignUp() {
   const [messages, setMessage] = useState();
 const navigate = useNavigate()
   return (
@@ -25,11 +25,12 @@ const navigate = useNavigate()
         initialValues={{
           email: "",
           password: "",
+          full_name: "",
           showPassword: false,
         }}
         validationSchema={ValidationSchema}
         onSubmit={async (values) => {
-          const response =  await postLogin(values);
+          const response =  await postSignUp(values);
           console.log(response);
           if (response.success) {
             setCookie("user-token" , response.data.token)
@@ -40,8 +41,15 @@ const navigate = useNavigate()
         }}
       >
         {({ errors, touched, values, setFieldValue }) => (
-          <Form className=" flex-col justify-start h-full flex gap-4">
-          
+          <Form className=" flex flex-col h-full justify-start gap-4">
+            <Field
+              id="full_name"
+              name="full_name"
+              placeholder="Full Name"
+              className={` ${AuthInput} ${
+                errors.email ? "border-red-500 " : ""
+              }`}
+            />
             <Field
               id="email"
               name="email"
@@ -74,7 +82,7 @@ const navigate = useNavigate()
               type="submit"
               className=" h-10 px-3 py-2.5 bg-violet-600 rounded-[100px] justify-center items-center gap-1.5 inline-flex text-white text-sm font-medium leading-tight"
             >
-              Login
+              Sign Up
             </button>
             {messages && (
             <span className="flex items-center font-medium tracking-wide text-danger text-sm mt-3 ml-1">
@@ -87,7 +95,9 @@ const navigate = useNavigate()
             {touched.password && errors.password && (
               <span className="text-red-500">{errors.password}</span>
             )}
-         
+            {touched.full_name && errors.full_name && (
+              <span className="text-red-500">{errors.full_name}</span>
+            )}
           </Form>
         )}
       </Formik>
@@ -95,4 +105,4 @@ const navigate = useNavigate()
   );
 }
 
-export default Login;
+export default SignUp;

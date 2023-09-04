@@ -7,7 +7,7 @@ const PasswordEye = (showPassword, key) => {
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke="currentColor"
+            stroke="#C5C5C5"
             className="h-6 w-6"
           >
             <path
@@ -27,7 +27,7 @@ const PasswordEye = (showPassword, key) => {
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke="currentColor"
+            stroke="#C5C5C5"
             className="h-6 w-6"
           >
             <path

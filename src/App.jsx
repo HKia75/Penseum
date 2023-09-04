@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import StartingPage from "./pages/dashboard/startingPage";
+import StartingPage from "./pages/startingPage";
 import Auth from "./pages/Auth";
 
 function App() {

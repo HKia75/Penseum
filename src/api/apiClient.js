@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getCookie } from "./services/cookies.storage";
 
 const apiClient = axios.create({
-  baseURL: 'https://', 
+  baseURL: 'https://api2.penseum.com/', 
 });
 
 export default apiClient;
