@@ -31,7 +31,7 @@ const navigate = useNavigate()
         validationSchema={ValidationSchema}
         onSubmit={async (values) => {
           const response =  await postSignUp(values);
-          console.log(response);
+          //console.log(response);
           if (response.success) {
             setCookie("user-token" , response.data.token)
             navigate("/");
